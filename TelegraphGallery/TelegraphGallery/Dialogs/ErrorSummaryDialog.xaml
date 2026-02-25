@@ -1,0 +1,43 @@
+<UserControl
+    x:Class="TelegraphGallery.Dialogs.ErrorSummaryDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:dialogs="clr-namespace:TelegraphGallery.Dialogs"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:prism="http://prismlibrary.com/"
+    Width="500"
+    Height="400"
+    d:DataContext="{d:DesignInstance dialogs:ErrorSummaryDialogViewModel}"
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    mc:Ignorable="d">
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <TextBlock
+            Grid.Row="0"
+            Margin="0,0,0,12"
+            FontSize="18"
+            FontWeight="Bold"
+            Text="Upload Errors" />
+        <ListBox
+            Grid.Row="1"
+            Margin="0,0,0,12"
+            ItemsSource="{Binding Errors}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}" TextWrapping="Wrap" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button
+            Grid.Row="2"
+            Padding="20,6"
+            HorizontalAlignment="Right"
+            Command="{Binding CloseCommand}"
+            Content="Close" />
+    </Grid>
+</UserControl>

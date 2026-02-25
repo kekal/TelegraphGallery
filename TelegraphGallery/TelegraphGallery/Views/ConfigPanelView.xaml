@@ -1,0 +1,104 @@
+<UserControl
+    x:Class="TelegraphGallery.Views.ConfigPanelView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:prism="http://prismlibrary.com/"
+    xmlns:viewModels="clr-namespace:TelegraphGallery.ViewModels"
+    Width="280"
+    d:DataContext="{d:DesignInstance viewModels:ConfigPanelViewModel}"
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    mc:Ignorable="d">
+    <ScrollViewer Padding="8" VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="8">
+            <TextBlock
+                Margin="0,0,0,12"
+                FontSize="16"
+                FontWeight="Bold"
+                Text="Configuration" />
+
+            <GroupBox Margin="0,0,0,8" Header="Storage">
+                <StackPanel Margin="4">
+                    <TextBlock Margin="0,0,0,2" Text="Backend:" />
+                    <ComboBox ItemsSource="{Binding StorageChoices}" SelectedItem="{Binding StorageChoice}" />
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Margin="0,0,0,8" Header="Telegraph">
+                <StackPanel Margin="4">
+                    <TextBlock Margin="0,4,0,2" Text="Access Token:" />
+                    <TextBox Text="{Binding TelegraphAccessToken, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Margin="0,4,0,2" Text="Author URL:" />
+                    <TextBox Text="{Binding AuthorUrl, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Margin="0,4,0,2" Text="Header Name:" />
+                    <TextBox Text="{Binding HeaderName, UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Margin="0,0,0,8" Header="ImgBB">
+                <StackPanel Margin="4">
+                    <TextBlock Margin="0,4,0,2" Text="API Key:" />
+                    <PasswordBox
+                        x:Name="ImgbbPasswordBox"
+                        Margin="0,0,0,4"
+                        PasswordChanged="ImgbbPasswordBox_OnPasswordChanged" />
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Margin="0,0,0,8" Header="Cyberdrop">
+                <StackPanel Margin="4">
+                    <TextBlock Margin="0,4,0,2" Text="Token:" />
+                    <PasswordBox
+                        x:Name="CyberdropPasswordBox"
+                        Margin="0,0,0,4"
+                        PasswordChanged="CyberdropPasswordBox_OnPasswordChanged" />
+                    <TextBlock Margin="0,4,0,2" Text="Album ID:" />
+                    <TextBox Text="{Binding CyberdropAlbumId, UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Margin="0,0,0,8" Header="Image Processing">
+                <StackPanel Margin="4">
+                    <TextBlock Margin="0,4,0,2" Text="Max Width:" />
+                    <TextBox Text="{Binding MaxWidth, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Margin="0,4,0,2" Text="Max Height:" />
+                    <TextBox Text="{Binding MaxHeight, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Margin="0,4,0,2" Text="Total Dimension Threshold:" />
+                    <TextBox Text="{Binding TotalDimensionThreshold, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Margin="0,4,0,2" Text="Max File Size (bytes):" />
+                    <TextBox Text="{Binding MaxFileSize, UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Margin="0,0,0,8" Header="Upload">
+                <StackPanel Margin="4">
+                    <TextBlock Margin="0,4,0,2" Text="Pause (seconds):" />
+                    <TextBox Text="{Binding PauseSeconds, UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Margin="0,0,0,8" Header="File System">
+                <StackPanel Margin="4">
+                    <TextBlock Margin="0,4,0,2" Text="Output Folder:" />
+                    <TextBox Text="{Binding OutputFolder, UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Margin="0,0,0,8" Header="Duplicates">
+                <StackPanel Margin="4">
+                    <TextBlock Margin="0,4,0,2">
+                        <Run Text="Threshold:" />
+                        <Run Text="{Binding DuplicateThreshold, Mode=OneWay}" />
+                    </TextBlock>
+                    <Slider
+                        IsSnapToTickEnabled="True"
+                        Maximum="20"
+                        Minimum="0"
+                        TickFrequency="1"
+                        Value="{Binding DuplicateThreshold}" />
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
